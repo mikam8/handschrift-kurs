@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Handschrift-Kurs — Michaela Al-Badri</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;background:#000;color:#fff;overflow-x:hidden}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+
+/* ── HERO ─────────────────────────────────────── */
+.hero{
+  min-height:100svh;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:6rem 2rem 4rem;
+  position:relative;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:1px;
+  background:rgba(255,255,255,.08);
+}
+.badge{
+  display:inline-block;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.25);
+  padding:.35rem 1rem;
+  margin-bottom:3rem;
+  color:rgba(255,255,255,.5);
+}
+.hero-head{
+  font-size:clamp(3.2rem,9vw,6.5rem);
+  font-weight:500;
+  line-height:1.0;
+  letter-spacing:-.02em;
+  margin-bottom:0;
+  max-width:14ch;
+}
+.hero-head .line2{
+  color:#CCFF00;
+  position:relative;
+  display:inline-block;
+}
+/* Underline draw animation on "Unterschrift" */
+.underline-draw{
+  position:relative;
+  white-space:nowrap;
+}
+.underline-draw::after{
+  content:'';
+  position:absolute;
+  bottom:-.1em;left:0;
+  height:3px;
+  background:#CCFF00;
+  width:0;
+  transition:width 1.1s cubic-bezier(.4,0,.2,1) .6s;
+}
+.underline-draw.drawn::after{width:100%}
+
+.hero-sub{
+  font-size:clamp(.95rem,2vw,1.15rem);
+  color:rgba(255,255,255,.45);
+  margin-top:2.5rem;
+  max-width:38ch;
+  line-height:1.75;
+}
+.hero-cta-wrap{
+  margin-top:3rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.9rem;
+}
+.cta{
+  display:inline-block;
+  background:#CCFF00;
+  color:#000;
+  border:none;
+  padding:1.15rem 3rem;
+  font-size:1.05rem;
+  font-weight:500;
+  cursor:pointer;
+  font-family:inherit;
+  letter-spacing:.02em;
+  text-decoration:none;
+  transition:transform .15s,background .15s;
+}
+.cta:hover{background:#d9ff33;transform:translateY(-2px)}
+.trust{font-size:.72rem;color:rgba(255,255,255,.28);letter-spacing:.08em;text-transform:uppercase}
+
+/* ── DESIRE ───────────────────────────────────── */
+.desire{
+  background:#fff;
+  color:#000;
+  padding:8rem 2rem;
+  text-align:center;
+}
+.desire-head{
+  font-size:clamp(2.2rem,6vw,4.2rem);
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-.02em;
+  max-width:18ch;
+  margin:0 auto 2.5rem;
+  color:#000;
+}
+.desire-mid{
+  font-size:clamp(1rem,2.2vw,1.25rem);
+  color:rgba(0,0,0,.5);
+  line-height:1.85;
+  max-width:36ch;
+  margin:0 auto 3.5rem;
+}
+.desire-owned{
+  display:inline-block;
+  font-size:clamp(1rem,2.5vw,1.3rem);
+  font-weight:500;
+  color:#000;
+  border-left:3px solid #CCFF00;
+  padding:.6rem 0 .6rem 1.25rem;
+  text-align:left;
+  line-height:1.6;
+}
+@media(max-width:480px){
+  .desire{padding:5rem 1.5rem}
+  .desire-owned{font-size:1rem}
+}
+
+/* ── FEELING LIST ─────────────────────────────── */
+.feeling{
+  background:#000;
+  padding:7rem 2rem;
+}
+.section-label{
+  font-size:.7rem;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  color:rgba(255,255,255,.3);
+  text-align:center;
+  margin-bottom:4rem;
+}
+.feeling-grid{
+  max-width:680px;
+  margin:0 auto 4rem;
+}
+.feeling-item{
+  display:grid;
+  grid-template-columns:2.5rem 1fr;
+  gap:1.5rem;
+  padding:2rem 0;
+  border-top:1px solid rgba(255,255,255,.08);
+  align-items:start;
+}
+.feeling-item:last-child{border-bottom:1px solid rgba(255,255,255,.08)}
+.feeling-num{
+  font-size:clamp(2.5rem,5vw,3.5rem);
+  font-weight:500;
+  color:#CCFF00;
+  line-height:.9;
+  opacity:.6;
+}
+.feeling-text{
+  font-size:clamp(1.1rem,2.5vw,1.4rem);
+  font-weight:500;
+  color:#fff;
+  line-height:1.3;
+  padding-top:.4rem;
+}
+.feeling-sub{
+  font-size:.88rem;
+  color:rgba(255,255,255,.4);
+  margin-top:.5rem;
+  line-height:1.65;
+}
+.feeling-cta{text-align:center}
+
+/* ── ÜBER MIKA ────────────────────────────────── */
+.about{
+  background:#fff;
+  color:#000;
+  padding:7rem 2rem;
+}
+.about-inner{
+  max-width:640px;
+  margin:0 auto;
+}
+.about-eyebrow{
+  font-size:.7rem;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  opacity:.35;
+  margin-bottom:2.5rem;
+}
+.about-name{
+  font-size:clamp(2.2rem,5vw,3.5rem);
+  font-weight:500;
+  line-height:1.05;
+  letter-spacing:-.02em;
+  margin-bottom:.4rem;
+}
+.about-role{
+  font-size:.9rem;
+  color:rgba(0,0,0,.45);
+  margin-bottom:2.5rem;
+  letter-spacing:.02em;
+}
+.divider-y{width:2.5rem;height:3px;background:#CCFF00;margin-bottom:2.5rem}
+.about-body{
+  font-size:clamp(.95rem,1.8vw,1.05rem);
+  line-height:1.85;
+  color:rgba(0,0,0,.7);
+  margin-bottom:1.25rem;
+}
+.about-body strong{color:#000;font-weight:500}
+.cred-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:2rem}
+.cred{font-size:.75rem;padding:.4rem .9rem;border:1px solid rgba(0,0,0,.18);color:rgba(0,0,0,.5);letter-spacing:.02em}
+
+/* ── MODULE ───────────────────────────────────── */
+.modules{
+  background:#000;
+  padding:7rem 2rem;
+}
+.modules-inner{max-width:680px;margin:0 auto}
+.module-row{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:1.6rem 0;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:1.5rem;
+  align-items:start;
+}
+.module-row:last-of-type{border-bottom:1px solid rgba(255,255,255,.08)}
+.module-title{font-size:.98rem;font-weight:500;color:#fff}
+.module-sub{font-size:.82rem;color:rgba(255,255,255,.4);margin-top:.3rem;line-height:1.55}
+.module-time{font-size:.75rem;color:#CCFF00;white-space:nowrap;padding-top:.15rem;opacity:.75}
+.pdf-box{
+  margin-top:3rem;
+  padding:1.6rem 2rem;
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+.pdf-text{font-size:.92rem;color:rgba(255,255,255,.65)}
+.pdf-badge{background:#CCFF00;color:#000;font-size:.75rem;padding:.35rem .9rem;font-weight:500;letter-spacing:.04em}
+
+/* ── GARANTIE ─────────────────────────────────── */
+.guarantee{
+  background:#CCFF00;
+  color:#000;
+  padding:7rem 2rem;
+  text-align:center;
+}
+.guarantee-head{
+  font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-.015em;
+  max-width:20ch;
+  margin:0 auto 1.5rem;
+}
+.guarantee-body{
+  font-size:clamp(.9rem,1.8vw,1rem);
+  line-height:1.8;
+  color:rgba(0,0,0,.6);
+  max-width:42ch;
+  margin:0 auto;
+}
+
+/* ── PREIS ────────────────────────────────────── */
+.price{
+  background:#000;
+  padding:8rem 2rem 9rem;
+  text-align:center;
+}
+.price-label{
+  font-size:.7rem;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  color:rgba(255,255,255,.3);
+  margin-bottom:1.25rem;
+}
+.price-big{
+  font-size:clamp(5rem,18vw,10rem);
+  font-weight:500;
+  line-height:.9;
+  color:#fff;
+  letter-spacing:-.03em;
+  margin-bottom:.6rem;
+}
+.price-terms{
+  font-size:.72rem;
+  color:rgba(255,255,255,.25);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:3rem;
+}
+.price-cta{
+  display:inline-block;
+  background:#CCFF00;
+  color:#000;
+  border:none;
+  padding:1.25rem 3.5rem;
+  font-size:1.1rem;
+  font-weight:500;
+  cursor:pointer;
+  font-family:inherit;
+  text-decoration:none;
+  letter-spacing:.02em;
+  transition:transform .15s,background .15s;
+}
+.price-cta:hover{background:#d9ff33;transform:translateY(-2px)}
+.price-note{font-size:.72rem;color:rgba(255,255,255,.2);margin-top:1.5rem;letter-spacing:.05em}
+
+/* ── ZAHLEN ───────────────────────────────────── */
+.stats{
+  background:#fff;
+  color:#000;
+  padding:6rem 2rem;
+  text-align:center;
+}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2rem;
+  max-width:760px;
+  margin:0 auto;
+}
+.stat-num{
+  font-size:clamp(3rem,8vw,5.5rem);
+  font-weight:500;
+  line-height:1;
+  letter-spacing:-.03em;
+  color:#000;
+}
+.stat-num span{color:#000;font-size:.55em;opacity:.4;font-weight:400}
+.stat-label{font-size:.78rem;color:rgba(0,0,0,.45);margin-top:.6rem;line-height:1.5;letter-spacing:.02em}
+.stats-divider{width:2px;height:60%;background:rgba(0,0,0,.08);margin:0 auto}
+
+/* ── TESTIMONIALS ─────────────────────────────── */
+.testimonials{
+  background:#000;
+  padding:7rem 2rem;
+}
+.t-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;
+  max-width:960px;
+  margin:2.5rem auto 0;
+}
+.t-card{
+  border:1px solid rgba(255,255,255,.1);
+  padding:2rem 2rem 2rem;
+  display:flex;
+  flex-direction:column;
+  gap:1.25rem;
+}
+.t-quote{
+  font-size:clamp(.95rem,1.8vw,1.05rem);
+  line-height:1.75;
+  color:rgba(255,255,255,.85);
+  font-style:italic;
+  flex:1;
+}
+.t-quote::before{content:'\201E';color:#CCFF00;font-size:1.4rem;font-style:normal;line-height:1;display:block;margin-bottom:.3rem}
+.t-meta{border-top:1px solid rgba(255,255,255,.08);padding-top:1rem}
+.t-name{font-size:.82rem;font-weight:500;color:#fff;letter-spacing:.02em}
+.t-role{font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.2rem}
+
+/* ── FOOTER ───────────────────────────────────── */
+footer{
+  background:#000;
+  border-top:1px solid rgba(255,255,255,.07);
+  padding:2rem 2.5rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:.75rem;
+  color:rgba(255,255,255,.25);
+  font-size:.75rem;
+}
+
+/* ── REVEAL ───────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.up{transform:translateY(24px)}
+.reveal.left{transform:translateX(-24px)}
+.reveal.in{opacity:1;transform:translate(0)}
+.reveal-scale{opacity:0;transform:scale(.94);transition:opacity .8s ease,transform .8s ease}
+.reveal-scale.in{opacity:1;transform:scale(1)}
+
+/* ── MOBILE ───────────────────────────────────── */
+@media(max-width:480px){
+  .hero{padding:5rem 1.5rem 4rem;min-height:95svh}
+  .hero-head{font-size:3rem;letter-spacing:-.015em}
+  .statement{padding:5rem 1.5rem}
+  .feeling,.about,.modules,.guarantee,.price{padding:5rem 1.5rem}
+  .price{padding:5rem 1.5rem 6rem}
+  .cta,.price-cta{display:block;text-align:center;padding:1.15rem 1.5rem}
+  .module-row{grid-template-columns:1fr;gap:.4rem}
+  .module-time{opacity:.55}
+  .feeling-num{font-size:2rem}
+  footer{flex-direction:column;align-items:flex-start;padding:1.5rem}
+  .about-name{font-size:2rem}
+  .guarantee-head{font-size:1.9rem}
+  .price-big{font-size:5.5rem}
+  .stats-grid{grid-template-columns:1fr;gap:2.5rem}
+  .t-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="badge reveal">Onlinekurs · 2026</p>
+  <h1 class="hero-head">
+    <span class="reveal up">KI generiert alles.</span><br>
+    <span class="line2 reveal up" style="transition-delay:.1s">
+      Außer deine<br>
+      <span class="underline-draw">Unterschrift.</span>
+    </span>
+  </h1>
+  <p class="hero-sub reveal up" style="transition-delay:.2s">Endlich ein Name der bleibt.<br>So stark, dass er dein Logo sein könnte.</p>
+  <div class="hero-cta-wrap reveal up" style="transition-delay:.3s">
+    <a href="#preis" class="cta">Ich will das. — 97 €</a>
+    <p class="trust">Einmalig &nbsp;·&nbsp; Kein Abo &nbsp;·&nbsp; Für immer</p>
+  </div>
+</section>
+
+<!-- ZAHLEN / SOCIAL PROOF -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="reveal">
+      <p class="stat-num">92.000<span>+</span></p>
+      <p class="stat-label">Unterschriften<br>geschrieben</p>
+    </div>
+    <div class="reveal" style="transition-delay:.1s">
+      <p class="stat-num">10<span>+ J.</span></p>
+      <p class="stat-label">Handschrift als<br>Handwerk</p>
+    </div>
+    <div class="reveal" style="transition-delay:.2s">
+      <p class="stat-num">4<span></span></p>
+      <p class="stat-label">Kontinente.<br>Ihre Handschrift. Überall.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DAS GEFÜHL / DESIRE -->
+<section class="desire">
+
+  <h2 class="desire-head reveal">
+    Du willst unterschreiben<br>
+    — und hinschauen.
+  </h2>
+
+  <p class="desire-mid reveal" style="transition-delay:.1s">
+    Nicht Perfektion. Nicht Kalligrafie.<br>
+    Das Gefühl wenn dein Name auf Papier sitzt<br>
+    und sagt: <em style="font-style:normal;color:#000;font-weight:500">Das bin ich.</em><br><br>
+    Wenn du jemandem etwas schreibst — und weißt:<br>
+    das berührt. Weil es von dir ist.<br>
+    Weil keine Maschine das für dich kann.
+  </p>
+
+  <p class="desire-owned reveal" style="transition-delay:.2s">
+    Nur deine Hand kann das schreiben.<br>
+    Und das gehört dir. Für immer.
+  </p>
+
+</section>
+
+<!-- FEELING -->
+<section class="feeling">
+  <p class="section-label reveal">Was sich verändert.</p>
+  <div class="feeling-grid">
+    <div class="feeling-item reveal">
+      <span class="feeling-num">01</span>
+      <div>
+        <p class="feeling-text">Du unterschreibst — und schaust hin.</p>
+        <p class="feeling-sub">Nicht entschuldigend. Nicht schnell. Mit Standing.</p>
+      </div>
+    </div>
+    <div class="feeling-item reveal" style="transition-delay:.08s">
+      <span class="feeling-num">02</span>
+      <div>
+        <p class="feeling-text">Dein Name fühlt sich an wie du.</p>
+        <p class="feeling-sub">Nicht wie eine Pflicht. Wie ein Statement.</p>
+      </div>
+    </div>
+    <div class="feeling-item reveal" style="transition-delay:.16s">
+      <span class="feeling-num">03</span>
+      <div>
+        <p class="feeling-text">Niemand muss wissen dass du das gelernt hast.</p>
+        <p class="feeling-sub">Sie sehen es einfach. Auf dem Vertrag. Auf der Karte.</p>
+      </div>
+    </div>
+    <div class="feeling-item reveal" style="transition-delay:.24s">
+      <span class="feeling-num">04</span>
+      <div>
+        <p class="feeling-text">Du schreibst jemandem etwas. Ohne nachzudenken.</p>
+        <p class="feeling-sub">Weil du weißt dass es gut aussieht. Weil es von dir ist.</p>
+      </div>
+    </div>
+  </div>
+  <div class="feeling-cta reveal">
+    <a href="#preis" class="cta">Ich will das. — 97 €</a>
+  </div>
+</section>
+
+<!-- ÜBER MIKA -->
+<section class="about">
+  <div class="about-inner">
+    <p class="about-eyebrow reveal">Wer ich bin.</p>
+    <h2 class="about-name reveal">Michaela<br>Al-Badri.</h2>
+    <p class="about-role reveal">Handschriften-Masterin &nbsp;·&nbsp; Berlin</p>
+    <div class="divider-y reveal"></div>
+    <p class="about-body reveal">Ich bin keine Kalligrafie-Lehrerin. Ich bringe keine Perfektion bei.<br><strong>Ich bringe deine Energie durch den Stift.</strong></p>
+    <p class="about-body reveal" style="transition-delay:.08s">Bei der Schreibstatt Berlin hielt ich für die renommiertesten Adressen der Welt die Feder. Internationale Modehäuser. Galerien. Weltkonzerne. Liebesbriefe. Heiratsanträge. Kondolenzschreiben. Alles was zählt, zählt auf Papier.</p>
+    <div class="cred-row reveal" style="transition-delay:.12s">
+      <span class="cred">Schreibstatt Berlin</span>
+      <span class="cred">Servus Magazin</span>
+      <span class="cred">Christian Boros</span>
+      <span class="cred">Internationale Modehäuser</span>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE -->
+<section class="modules">
+  <div class="modules-inner">
+    <p class="section-label reveal">Was du bekommst.</p>
+    <div class="module-row reveal"><div><p class="module-title">Modul 0 — Freiheit</p><p class="module-sub">Die Handschrift-Polizei kommt nicht.</p></div><span class="module-time">~5 Min</span></div>
+    <div class="module-row reveal" style="transition-delay:.05s"><div><p class="module-title">Modul 1 — Deine sichtbare Stimme</p><p class="module-sub">Warum Handschrift 2026 das Lauteste ist.</p></div><span class="module-time">~9 Min</span></div>
+    <div class="module-row reveal" style="transition-delay:.1s"><div><p class="module-title">Modul 2 — Das Werkzeug</p><p class="module-sub">Warum deine Schrift schlecht ist — nicht du.</p></div><span class="module-time">~11 Min</span></div>
+    <div class="module-row reveal" style="transition-delay:.15s"><div><p class="module-title">Modul 3 — Das Alphabet</p><p class="module-sub">A bis Z. In deiner Energie. Nicht in meiner.</p></div><span class="module-time">~33 Min</span></div>
+    <div class="module-row reveal" style="transition-delay:.2s"><div><p class="module-title">Modul 4 — Zahlen</p><p class="module-sub">Das vergessene Werkzeug. Vollständig.</p></div><span class="module-time">~9 Min</span></div>
+    <div class="module-row reveal" style="transition-delay:.25s"><div><p class="module-title">Modul 5 — Dein Name als Logo</p><p class="module-sub">5 Techniken. Deine Unterschrift. Endgültig.</p></div><span class="module-time">~24 Min</span></div>
+    <div class="module-row reveal" style="transition-delay:.3s"><div><p class="module-title">Modul 6 — In die Welt</p><p class="module-sub">Das erste echte Mal. Für jemanden der zählt.</p></div><span class="module-time">~10 Min</span></div>
+    <div class="pdf-box reveal" style="transition-delay:.35s">
+      <p class="pdf-text">+ 22 Übungsbögen &nbsp;·&nbsp; druckfertig &nbsp;·&nbsp; für immer</p>
+      <span class="pdf-badge">PDF-Paket inkl.</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS — Platzhalter: vor Launch durch echte Stimmen ersetzen -->
+<section class="testimonials">
+  <p class="section-label reveal">Was andere sagen.</p>
+  <div class="t-grid">
+
+    <div class="t-card reveal">
+      <p class="t-quote">Ich habe meinen Namen dreißig Jahre lang hastig hingeworfen. Jetzt unterschreibe ich Verträge und schaue danach hin. Das klingt nach nichts — aber es verändert wie du dich im Raum fühlst.</p>
+      <div class="t-meta">
+        <p class="t-name">Sabine K.</p>
+        <p class="t-role">Rechtsanwältin · München</p>
+      </div>
+    </div>
+
+    <div class="t-card reveal" style="transition-delay:.1s">
+      <p class="t-quote">Ich arbeite in der Kreativbranche. Ich dachte ich brauche das nicht. Dann habe ich gesehen wie meine Handschrift auf einer Einladungskarte aussah. Drei Wochen später war das anders. Komplett anders.</p>
+      <div class="t-meta">
+        <p class="t-name">Jonas W.</p>
+        <p class="t-role">Art Director · Hamburg</p>
+      </div>
+    </div>
+
+    <div class="t-card reveal" style="transition-delay:.2s">
+      <p class="t-quote">Was mich überrascht hat: Es geht gar nicht darum schön zu schreiben. Es geht darum aufzuhören sich für sich selbst zu entschuldigen. Das war mein Moment in Modul 5. Stift weg. Fertig.</p>
+      <div class="t-meta">
+        <p class="t-name">Marie L.</p>
+        <p class="t-role">Unternehmerin · Berlin</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GARANTIE -->
+<section class="guarantee">
+  <h2 class="guarantee-head reveal-scale">Mein Name ist meine Garantie.</h2>
+  <p class="guarantee-body reveal" style="transition-delay:.1s">Ich habe für die Schreibstatt Berlin die Feder gehalten — für Häuser die höchste Ansprüche stellen. Das ist kein Kurs mit Kleingedrucktem. Das ist ein Kurs mit meinem Namen drauf.</p>
+</section>
+
+<!-- PREIS -->
+<section class="price" id="preis">
+  <p class="price-label reveal">Einmalig.</p>
+  <p class="price-big reveal-scale">97 €</p>
+  <p class="price-terms reveal" style="transition-delay:.1s">Kein Abo &nbsp;·&nbsp; Für immer &nbsp;·&nbsp; Sofort-Zugang</p>
+  <a href="#" class="price-cta reveal" style="transition-delay:.18s">Ich will das.</a>
+  <p class="price-note reveal" style="transition-delay:.26s">Auf allen Geräten &nbsp;·&nbsp; Kurszugang endet nie</p>
+</section>
+
+<footer>
+  <span>m8 Studio &nbsp;·&nbsp; Michaela Al-Badri &nbsp;·&nbsp; Berlin</span>
+  <span>Impressum &nbsp;·&nbsp; Datenschutz &nbsp;·&nbsp; AGB &nbsp;·&nbsp; Widerruf</span>
+</footer>
+
+<script>
+// Scroll reveal
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-scale').forEach(el => io.observe(el));
+
+// Underline on hero load
+window.addEventListener('load',() => {
+  setTimeout(()=>{
+    document.querySelector('.underline-draw')?.classList.add('drawn');
+  },400);
+});
+</script>
+</body>
+</html>
