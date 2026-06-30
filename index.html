@@ -146,38 +146,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
 .cta:hover{background:#d9ff33;transform:translateY(-2px)}
 .trust{font-size:.72rem;color:rgba(255,255,255,.28);letter-spacing:.08em;text-transform:uppercase}
 
-/* ── FEDER / TINTE (subtil, ambient) ──────────── */
+/* ── FEDER / TINTE (gefüllt, mit Fluss) ──────────── */
 .hero>*:not(.quill){position:relative;z-index:1}
 .quill{
   position:absolute;
-  top:clamp(3.5rem,11vh,8rem);
-  right:clamp(0.8rem,6vw,5rem);
-  width:clamp(72px,12vw,148px);
+  top:clamp(2.2rem,9vh,6.5rem);
+  right:clamp(0.4rem,5vw,4.5rem);
+  width:clamp(104px,16vw,196px);
   z-index:0;
-  opacity:.4;
+  opacity:.55;
   pointer-events:none;
-  filter:drop-shadow(0 0 16px rgba(204,255,0,.22));
+  filter:drop-shadow(0 5px 22px rgba(204,255,0,.3));
 }
 .quill svg{display:block;width:100%;height:auto;overflow:visible}
-.quill-art{animation:quill-sway 8s ease-in-out infinite;transform-origin:50% 10%}
-@keyframes quill-sway{0%,100%{transform:rotate(-0.9deg)}50%{transform:rotate(0.9deg)}}
-.quill .drop{transform-box:fill-box;transform-origin:center;opacity:0}
-.quill .d1{animation:drip 6.8s ease-in infinite}
-.quill .d2{animation:drip 6.8s ease-in infinite 3.4s}
-@keyframes drip{
-  0%{opacity:0;transform:translateY(0) scale(.3)}
-  9%{opacity:.95;transform:translateY(1px) scale(1)}
-  24%{opacity:.95;transform:translateY(3px) scaleY(1.18)}
-  48%{opacity:.8;transform:translateY(34px) scaleY(1.55)}
-  70%{opacity:0;transform:translateY(66px) scale(.6)}
-  100%{opacity:0;transform:translateY(66px) scale(.6)}
-}
 @media(max-width:480px){
-  .quill{top:auto;bottom:clamp(7rem,18vh,11rem);right:.6rem;width:62px;opacity:.32}
-}
-@media(prefers-reduced-motion:reduce){
-  .quill-art{animation:none}
-  .quill .drop{animation:none;opacity:0}
+  .quill{top:clamp(1rem,6vh,4rem);right:.2rem;width:96px;opacity:.45}
 }
 
 /* ── DESIRE ───────────────────────────────────── */
@@ -512,25 +495,35 @@ footer a:hover{color:#CCFF00}
 <!-- HERO -->
 <section class="hero">
   <div class="quill" aria-hidden="true">
-    <svg viewBox="22 4 76 212" xmlns="http://www.w3.org/2000/svg">
-      <g class="quill-art" fill="none" stroke="#CCFF00" stroke-linecap="round" stroke-linejoin="round">
-        <!-- Griffring / Kragen oben -->
-        <rect x="42" y="8" width="36" height="15" rx="7.5" stroke-width="2"/>
-        <line x1="47" y1="23" x2="73" y2="23" stroke-width="1" opacity=".5"/>
-        <!-- Nib-Körper: breite Schultern, läuft in die Spitze -->
-        <path d="M60 23 C 45 27, 33 44, 32 72 C 31 108, 48 160, 60 190 C 72 160, 89 108, 88 72 C 87 44, 75 27, 60 23 Z" stroke-width="2"/>
-        <!-- Tintenschlitz von der Spitze bis zum Luftloch -->
-        <path d="M60 190 L60 95" stroke-width="2"/>
-        <!-- Luftloch -->
-        <circle cx="60" cy="86" r="8.5" stroke-width="2"/>
-        <!-- dezente Ziergravur (Filigran) -->
-        <path d="M50 112 Q42 124 48 137 Q53 144 47 152" stroke-width="1" opacity=".45"/>
-        <path d="M70 112 Q78 124 72 137 Q67 144 73 152" stroke-width="1" opacity=".45"/>
-      </g>
-      <g class="ink" fill="#CCFF00">
-        <ellipse class="drop d1" cx="60" cy="194" rx="2.8" ry="3.4"/>
-        <ellipse class="drop d2" cx="60" cy="194" rx="2.2" ry="2.8"/>
-      </g>
+    <svg viewBox="70 6 122 256" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="nibGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#EEFF8A"/>
+          <stop offset="0.45" stop-color="#CCFF00"/>
+          <stop offset="1" stop-color="#A6D200"/>
+        </linearGradient>
+        <linearGradient id="inkFade" gradientUnits="userSpaceOnUse" x1="150" y1="156" x2="176" y2="212">
+          <stop offset="0" stop-color="#CCFF00"/>
+          <stop offset="0.65" stop-color="#CCFF00" stop-opacity="0.55"/>
+          <stop offset="1" stop-color="#CCFF00" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- Griffring / Kragen -->
+      <rect x="130" y="14" width="40" height="16" rx="8" fill="url(#nibGrad)"/>
+      <!-- Nib-Körper (gefüllt, Verlauf) -->
+      <path fill="url(#nibGrad)" d="M150 30 C 132 35, 120 56, 119 86 C 118 116, 136 142, 150 156 C 164 142, 182 116, 181 86 C 180 56, 168 35, 150 30 Z"/>
+      <!-- Tintenschlitz (ausgespart) -->
+      <path fill="#000" d="M150 150 C 148 130, 147 104, 147 96 L 153 96 C 153 104, 152 130, 150 150 Z"/>
+      <!-- Luftloch (ausgespart) -->
+      <circle cx="150" cy="88" r="9" fill="#000"/>
+      <!-- Tinten-Schwung, fadet aus -->
+      <path d="M150 156 C 152 192 118 204 94 216 C 76 225 78 246 104 248 C 134 250 158 236 176 212" fill="none" stroke="url(#inkFade)" stroke-width="3.4" stroke-linecap="round"/>
+      <!-- Tropfen läuft den Schwung entlang -->
+      <circle r="3.6" fill="#CCFF00" opacity="0">
+        <animateMotion dur="5.5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keyPoints="0;1" keySplines="0.45 0 0.3 1"
+          path="M150 156 C 152 192 118 204 94 216 C 76 225 78 246 104 248 C 134 250 158 236 176 212"/>
+        <animate attributeName="opacity" dur="5.5s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.12;0.8;1"/>
+      </circle>
     </svg>
   </div>
   <p class="badge reveal">Onlinekurs · 2026</p>
