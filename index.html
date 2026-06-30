@@ -146,6 +146,40 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
 .cta:hover{background:#d9ff33;transform:translateY(-2px)}
 .trust{font-size:.72rem;color:rgba(255,255,255,.28);letter-spacing:.08em;text-transform:uppercase}
 
+/* ── FEDER / TINTE (subtil, ambient) ──────────── */
+.hero>*:not(.quill){position:relative;z-index:1}
+.quill{
+  position:absolute;
+  top:clamp(3.5rem,11vh,8rem);
+  right:clamp(0.8rem,6vw,5rem);
+  width:clamp(72px,12vw,148px);
+  z-index:0;
+  opacity:.4;
+  pointer-events:none;
+  filter:drop-shadow(0 0 16px rgba(204,255,0,.22));
+}
+.quill svg{display:block;width:100%;height:auto;overflow:visible}
+.quill-art{animation:quill-sway 7.5s ease-in-out infinite;transform-origin:52% 8%}
+@keyframes quill-sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+.quill .drop{transform-box:fill-box;transform-origin:center;opacity:0}
+.quill .d1{animation:drip 6.8s ease-in infinite}
+.quill .d2{animation:drip 6.8s ease-in infinite 3.4s}
+@keyframes drip{
+  0%{opacity:0;transform:translateY(0) scale(.3)}
+  9%{opacity:.95;transform:translateY(1px) scale(1)}
+  24%{opacity:.95;transform:translateY(3px) scaleY(1.18)}
+  48%{opacity:.8;transform:translateY(34px) scaleY(1.55)}
+  70%{opacity:0;transform:translateY(66px) scale(.6)}
+  100%{opacity:0;transform:translateY(66px) scale(.6)}
+}
+@media(max-width:480px){
+  .quill{top:auto;bottom:clamp(7rem,18vh,11rem);right:.6rem;width:62px;opacity:.32}
+}
+@media(prefers-reduced-motion:reduce){
+  .quill-art{animation:none}
+  .quill .drop{animation:none;opacity:0}
+}
+
 /* ── DESIRE ───────────────────────────────────── */
 .desire{
   background:#fff;
@@ -475,6 +509,21 @@ footer{
 
 <!-- HERO -->
 <section class="hero">
+  <div class="quill" aria-hidden="true">
+    <svg viewBox="0 0 120 230" xmlns="http://www.w3.org/2000/svg">
+      <g class="quill-art" fill="none" stroke="#CCFF00" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M62 14 C 40 50, 36 110, 48 150 C 70 130, 84 70, 62 14 Z"/>
+        <path d="M62 16 C 56 62, 50 120, 47 152 L 43 198" stroke-width="1.8"/>
+        <path d="M54 56 L 42 60 M52 78 L 39 84 M50 100 L 39 108 M49 122 L 41 132" opacity=".85"/>
+        <path d="M60 50 L 73 56 M57 74 L 72 82 M54 98 L 67 108 M51 120 L 61 132" opacity=".85"/>
+        <path d="M43 198 L 40 206 M43 198 L 46 206"/>
+      </g>
+      <g class="ink" fill="#CCFF00">
+        <ellipse class="drop d1" cx="43" cy="208" rx="2.8" ry="3.4"/>
+        <ellipse class="drop d2" cx="43" cy="208" rx="2.2" ry="2.8"/>
+      </g>
+    </svg>
+  </div>
   <p class="badge reveal">Onlinekurs · 2026</p>
   <h1 class="hero-head">
     <span class="reveal up">KI generiert alles.</span><br>
