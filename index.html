@@ -159,7 +159,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
   filter:drop-shadow(0 0 16px rgba(204,255,0,.22));
 }
 .quill svg{display:block;width:100%;height:auto;overflow:visible}
-.quill-art{animation:quill-sway 8s ease-in-out infinite;transform-origin:50% 22%}
+.quill-art{animation:quill-sway 8s ease-in-out infinite;transform-origin:50% 10%}
 @keyframes quill-sway{0%,100%{transform:rotate(-0.9deg)}50%{transform:rotate(0.9deg)}}
 .quill .drop{transform-box:fill-box;transform-origin:center;opacity:0}
 .quill .d1{animation:drip 6.8s ease-in infinite}
@@ -512,18 +512,24 @@ footer a:hover{color:#CCFF00}
 <!-- HERO -->
 <section class="hero">
   <div class="quill" aria-hidden="true">
-    <svg viewBox="20 24 80 214" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="22 4 76 212" xmlns="http://www.w3.org/2000/svg">
       <g class="quill-art" fill="none" stroke="#CCFF00" stroke-linecap="round" stroke-linejoin="round">
-        <!-- Füller-Federspitze (Nib) -->
-        <path d="M60 186 C 43 152, 37 110, 39 70 C 40 55, 48 45, 60 43 C 72 45, 80 55, 81 70 C 83 110, 77 152, 60 186 Z" stroke-width="2"/>
-        <!-- Tintenschlitz -->
-        <path d="M60 186 L60 98" stroke-width="2"/>
+        <!-- Griffring / Kragen oben -->
+        <rect x="42" y="8" width="36" height="15" rx="7.5" stroke-width="2"/>
+        <line x1="47" y1="23" x2="73" y2="23" stroke-width="1" opacity=".5"/>
+        <!-- Nib-Körper: breite Schultern, läuft in die Spitze -->
+        <path d="M60 23 C 45 27, 33 44, 32 72 C 31 108, 48 160, 60 190 C 72 160, 89 108, 88 72 C 87 44, 75 27, 60 23 Z" stroke-width="2"/>
+        <!-- Tintenschlitz von der Spitze bis zum Luftloch -->
+        <path d="M60 190 L60 95" stroke-width="2"/>
         <!-- Luftloch -->
-        <circle cx="60" cy="89" r="7" stroke-width="2"/>
+        <circle cx="60" cy="86" r="8.5" stroke-width="2"/>
+        <!-- dezente Ziergravur (Filigran) -->
+        <path d="M50 112 Q42 124 48 137 Q53 144 47 152" stroke-width="1" opacity=".45"/>
+        <path d="M70 112 Q78 124 72 137 Q67 144 73 152" stroke-width="1" opacity=".45"/>
       </g>
       <g class="ink" fill="#CCFF00">
-        <ellipse class="drop d1" cx="60" cy="190" rx="2.8" ry="3.4"/>
-        <ellipse class="drop d2" cx="60" cy="190" rx="2.2" ry="2.8"/>
+        <ellipse class="drop d1" cx="60" cy="194" rx="2.8" ry="3.4"/>
+        <ellipse class="drop d2" cx="60" cy="194" rx="2.2" ry="2.8"/>
       </g>
     </svg>
   </div>
