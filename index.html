@@ -159,7 +159,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
   filter:drop-shadow(0 0 16px rgba(204,255,0,.22));
 }
 .quill svg{display:block;width:100%;height:auto;overflow:visible}
-.quill-art{animation:quill-sway 7.5s ease-in-out infinite;transform-origin:52% 8%}
+.quill-art{animation:quill-sway 7.5s ease-in-out infinite;transform-origin:70% 7%}
 @keyframes quill-sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
 .quill .drop{transform-box:fill-box;transform-origin:center;opacity:0}
 .quill .d1{animation:drip 6.8s ease-in infinite}
@@ -510,17 +510,22 @@ footer{
 <!-- HERO -->
 <section class="hero">
   <div class="quill" aria-hidden="true">
-    <svg viewBox="0 0 120 230" xmlns="http://www.w3.org/2000/svg">
-      <g class="quill-art" fill="none" stroke="#CCFF00" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M62 14 C 40 50, 36 110, 48 150 C 70 130, 84 70, 62 14 Z"/>
-        <path d="M62 16 C 56 62, 50 120, 47 152 L 43 198" stroke-width="1.8"/>
-        <path d="M54 56 L 42 60 M52 78 L 39 84 M50 100 L 39 108 M49 122 L 41 132" opacity=".85"/>
-        <path d="M60 50 L 73 56 M57 74 L 72 82 M54 98 L 67 108 M51 120 L 61 132" opacity=".85"/>
-        <path d="M43 198 L 40 206 M43 198 L 46 206"/>
+    <svg viewBox="0 0 140 250" xmlns="http://www.w3.org/2000/svg">
+      <g class="quill-art" fill="none" stroke="#CCFF00" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Kiel + nackter Schaft bis zur Schreibspitze -->
+        <path d="M98 18 C 89 50, 74 100, 63 144 C 59 162, 55 188, 53 210" stroke-width="2"/>
+        <!-- Schreibspitze (gespaltene Feder) -->
+        <path d="M53 204 L49 215 M53 204 L57 215" stroke-width="1.8"/>
+        <!-- feine Spitze oben -->
+        <path d="M98 18 Q104 23 100 29 Q97 25 96 32" stroke-width="1.2" opacity=".8"/>
+        <!-- Barben rechts (Außenfahne), dicht + geschwungen zur Spitze -->
+        <path stroke-width="1.15" opacity=".8" d="M95 30 Q105 22 110 20 M92 39 Q103 30 109 28 M89 48 Q101 39 107 36 M85 58 Q98 48 105 46 M81 69 Q95 58 103 56 M77 80 Q92 69 100 67 M74 91 Q89 80 97 78 M71 101 Q85 91 93 89 M68 111 Q81 102 89 100 M65 121 Q77 113 85 111 M63 131 Q73 124 81 122 M61 140 Q69 134 76 132 M59 149 Q66 144 72 142 M58 157 Q63 153 68 151"/>
+        <!-- Barben links (Innenfahne) -->
+        <path stroke-width="1.15" opacity=".8" d="M95 30 Q87 21 82 18 M92 39 Q83 30 77 27 M89 48 Q79 39 71 36 M85 58 Q74 49 65 47 M81 69 Q69 60 60 58 M77 80 Q65 71 55 69 M74 91 Q62 83 52 81 M71 101 Q59 94 49 92 M68 111 Q56 105 47 103 M65 121 Q54 116 46 114 M63 131 Q53 126 46 124 M61 140 Q53 135 47 133 M59 149 Q54 145 49 143 M58 157 Q55 153 51 151"/>
       </g>
       <g class="ink" fill="#CCFF00">
-        <ellipse class="drop d1" cx="43" cy="208" rx="2.8" ry="3.4"/>
-        <ellipse class="drop d2" cx="43" cy="208" rx="2.2" ry="2.8"/>
+        <ellipse class="drop d1" cx="52" cy="218" rx="2.8" ry="3.4"/>
+        <ellipse class="drop d2" cx="52" cy="218" rx="2.2" ry="2.8"/>
       </g>
     </svg>
   </div>
