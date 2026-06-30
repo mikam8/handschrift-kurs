@@ -146,37 +146,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;ba
 .cta:hover{background:#d9ff33;transform:translateY(-2px)}
 .trust{font-size:.72rem;color:rgba(255,255,255,.28);letter-spacing:.08em;text-transform:uppercase}
 
-/* ── FEDER / TINTE (gefüllt, mit Fluss) ──────────── */
-.hero>*:not(.quill){position:relative;z-index:1}
-.quill{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:clamp(150px,30vw,330px);
-  z-index:0;
-  opacity:.4;
-  pointer-events:none;
-  filter:drop-shadow(0 5px 22px rgba(204,255,0,.28));
-}
-.quill svg{display:block;width:100%;height:auto;overflow:visible}
-.oneline{stroke-dasharray:1000;animation:drawline 8s ease-in-out infinite}
-@keyframes drawline{
-  0%{stroke-dashoffset:1000}
-  42%{stroke-dashoffset:0}
-  72%{stroke-dashoffset:0}
-  100%{stroke-dashoffset:-1000}
-}
-.ink-tip{opacity:0;animation:tipdot 8s ease-in-out infinite}
-@keyframes tipdot{0%,40%{opacity:0}46%{opacity:1}70%{opacity:1}80%,100%{opacity:0}}
-@media(max-width:480px){
-  .quill{width:clamp(150px,62vw,240px);opacity:.3}
-}
-@media(prefers-reduced-motion:reduce){
-  .oneline{animation:none;stroke-dashoffset:0}
-  .ink-tip{animation:none;opacity:.9}
-}
-
 /* ── DESIRE ───────────────────────────────────── */
 .desire{
   background:#fff;
@@ -508,24 +477,6 @@ footer a:hover{color:#CCFF00}
 
 <!-- HERO -->
 <section class="hero">
-  <div class="quill" aria-hidden="true">
-    <svg viewBox="78 18 116 268" xmlns="http://www.w3.org/2000/svg">
-      <!-- Eine durchgehende Linie: Feder formt sich und läuft in den Tinten-Schwung aus -->
-      <path class="oneline" pathLength="1000" fill="none" stroke="#CCFF00" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"
-        d="M150 48
-           C 120 56 110 100 117 137
-           C 123 165 139 181 150 189
-           C 153 152 152 100 150 52
-           C 150 50 150 49 150 48
-           C 180 56 190 100 183 137
-           C 177 165 161 181 150 189
-           C 150 209 122 217 100 225
-           C 80 232 82 253 106 255
-           C 134 257 158 245 176 223"/>
-      <!-- Tinten-Tropfen an der Spitze -->
-      <circle class="ink-tip" cx="176" cy="223" r="3.4" fill="#CCFF00"/>
-    </svg>
-  </div>
   <p class="badge reveal">Onlinekurs · 2026</p>
   <h1 class="hero-head">
     <span class="reveal up">KI generiert alles.</span><br>
